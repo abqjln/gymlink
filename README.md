@@ -1,6 +1,6 @@
 Gymlink is a C implementation of Bluetooth Low Energy (BLE) communication between fitness peripherals/servers and centrals/clients using Raspberry Pis. Specific applications are being developed as the author has devices.
 
-Gymlink coding has been intentionally pedantic in style and commenting to provide a learning tool. All the possible compiler warnings are turned on. I knew nothing about BLE or fitness machine communication prior to summer of 2024, and quite likely will forget them soon, so an attempt was made to write everything down. The intent is to help the author remember--and others learn. Bluetooth using C should not be this diffifult!
+Gymlink coding has been intentionally pedantic in style and commenting to provide a learning tool. All the possible compiler warnings are turned on. I knew nothing about BLE or fitness machine communication prior to summer of 2024, and quite likely will forget them soon, so an attempt was made to write everything down. The intent is to help the author remember--and others learn. Bluetooth using C should not be this difficult!
 
 This code was enabled by the excellent C library bluez_inc from @weliem ([bluez_inc](https://github.com/weliem/bluez_inc)), which provides a C library to abstract from the dBus-based ([bluez](https://github.com/bluez/bluez))
 
