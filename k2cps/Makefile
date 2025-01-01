@@ -1,7 +1,7 @@
 # Made to compile on different targets so exec is unique
 
-HOST=$(shell hostname)
-TARGET = ../${HOST}/k2cps
+HOSTNAME=$(shell hostname)
+TARGET = ../${HOSTNAME}/k2cps
 
 # Relies on GYMLINK_ROOT for bluez and bluez_inc
 ifndef GYMLINK_ROOT
@@ -12,7 +12,7 @@ endif
 # Keep objs separate
 SRC_DIRS := ./ ../gl
 INC_DIRS := ${SRC_DIRS}
-OBJ_DIR := ../$(HOST)/obj
+OBJ_DIR := ../$(HOSTNAME)/obj
 $(shell mkdir -p $(OBJ_DIR))
 DEP_DIR := $(OBJ_DIR)
 $(shell mkdir -p $(DEP_DIR))
