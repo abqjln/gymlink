@@ -1,3 +1,11 @@
 
 *.d
 *.o
+pi0dev/
+pi0gym/
+pi3gym/
+pi3dev/
+pi4gym/
+pi4dev/
+pi5dev0/
+pi5dev1/
