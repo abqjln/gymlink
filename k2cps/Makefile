@@ -1,7 +1,15 @@
+# Made to compile on different targets so exec is unique
+
 HOST=$(shell hostname)
 TARGET = k2cps-$(HOST)
 
+# Relies on GYMLINK_LOCAL_LIB_DIR for bluez and bluez_inc
+ifndef GYMLINK_LOCAL_LIB_DIR
+$(error GYMLINK_LOCAL_LIB_DIR is not set)
+endif
+
 #########################################
+# Keep objs separate
 SRC_DIRS := ./ ../gl
 INC_DIRS := ${SRC_DIRS}
 OBJ_DIR := $(CURDIR)/$(HOST)/obj
@@ -9,7 +17,7 @@ $(shell mkdir -p $(OBJ_DIR))
 DEP_DIR := $(OBJ_DIR)
 $(shell mkdir -p $(DEP_DIR))
 
-BINC_DIR := /mnt/code/bluez_inc_jln/binc
+BINC_DIR := ${GYMLINK_LOCAL_LIB_DIR}/bluez_inc/binc
 BINC_INC_DIR := ${BINC_DIR}
 BINC_OBJ_DIR := ${CURDIR}/$(HOST)/binc_obj
 $(shell mkdir -p $(BINC_OBJ_DIR))
