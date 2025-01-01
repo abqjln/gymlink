@@ -132,8 +132,9 @@ int main( int argc, char *argv[] )
 	s_lserver.adv_service_uuids = g_ptr_array_new();
 	g_ptr_array_add( s_lserver.adv_service_uuids, CYCLING_POWER_SERVICE_UUID );
 
-	gethostname(hostname, HOST_NAME_MAX-1);
-	s_lserver.dis.model = "CPS";
+	gethostname(hostname, 8);
+	s_lserver.dis.model = malloc( strlen(hostname) + 5 );
+	sprintf( s_lserver.dis.model, "%8s-%3s", hostname, "CPS" );
 	s_lserver.adv_manufacturer_id = K2CPS_ADV_MANUFACTURER_ID;
 	snprintf( s_lserver.adv_name, sizeof(s_lserver.adv_name), "%s-%s-%4s", hostname, s_lserver.dis.model, random_string( 4 ) );
 	s_lserver.adv_min_interval = 100;
@@ -147,7 +148,7 @@ int main( int argc, char *argv[] )
 	s_lserver.dis.manufacturer = K2CPS_DIS_MANUFACTURER;
 	s_lserver.cps.fc.flags = CPS_FC_CRANK_REVOLUTION_DATA_SUPPORTED | CPS_FC_WHEEL_REVOLUTION_DATA_SUPPORTED | CPS_FC_DISTRIBUTED_SYS_SUPPORT_FALSE;
 	s_lserver.cps.slc.flags = CPS_SLC_SPIDER; // Spider on M3i is total power, not bilateral
-	s_lserver.cps.mc.notify_ms = CPS_CPC_NOTIFY_MS;
+	s_lserver.cps.mc.notify_ms = K2CPS_CPS_CPC_NOTIFY_MS;
 	s_lserver.cps.mc.gear_ratio = K2CPS_KONA_GEAR_RATIO;
 	s_lserver.cps.mc.tire_circumference_km = K2CPS_KONA_TIRE_650B_CIRCUMFERENCE_KM;
 

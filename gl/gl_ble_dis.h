@@ -21,7 +21,7 @@
 
 struct dis_struct{
 	uint64_t system_id;
-	gchar *model; // Owned
+	char *model;
 	char *serial;
 	char *hardware;
 	char *firmware;
