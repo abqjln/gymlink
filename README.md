@@ -34,6 +34,8 @@ So I remember what is going on, I created a script to install the required packa
 9) make
 10) \${GYMLINK_ROOT}/${HOST}/k2cps
 
+The BLE signal from the M3i is not particularly strong, so place the RPi close to the M3i head unit (and your watch).
+
 k2cps will configure the BT adapter, and begin advertising the connectable BLE-CPS service using the RPi hostname.
 
 k2cps will scan for the Keiser M3i advertisement, convert the data into CPS format, and serve it to the client.
@@ -50,19 +52,26 @@ For simulation purposes, k2cps sends a speed value that is derived from a specif
 
 After about 30 seconds of non-use, the Fenix8 will disconnect.
 
+I sometimes observe dropouts across power, speed, and cadence, indicating a connection error, roughly three times in a 24 minute period. Still debugging.
+
+I also observe odd dropouts only in speed, while cadence and power are fine. I suspect a Garmin BLE stack issue. Since speed is simulated with a stationary bike under CPS, not too worried. The Garmin stack changes frequently and without notice.
+
 ## Keiser M3i Notes
 The Keiser M3i bike itself broadcasts a nonconnectable BLE advertisement containing the bike data. The specification is here  [https://dev.keiser.com/mseries/direct/#data-parse-example](url)
 
 Gymlink includes a bash simulator `M3i_beacon.sh` derived from 
 [https://github.com/KeiserCorp/Keiser.M3i.BLE-HCI-Simulator/blob/master/M3i_Sim.sh](url)
 
-The BLE signal from the M3i is not particularly strong, so place the RPi close by.
-
 Upon stopping a workout, the bike beacon has an annoying behavior of sending the last non-zero data for over a minute until it times out; k2cps will detect this and send zeros, so you won't get credit for spinning that extra minute.<br/>
 
 
 # Next up
 The gl library contains other BLE services but with much cruft and only partially working.
-## FTMS indoor bike for M3i (actually more appropriate than CPS, but Garmin didn't recognize)
-## FTMS treadmill to improve cadence and speed measurements, with elevation
+
+## BLE FTMS treadmill to improve cadence and speed measurements
+
+## BLE FTMS indoor bike for M3i
+(actually more appropriate than CPS, but couldn't get Garmin to recognize)
+
+## If I had a BLE rowing machine
 
