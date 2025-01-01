@@ -1,7 +1,7 @@
 # Made to compile on different targets so exec is unique
 
 HOST=$(shell hostname)
-TARGET = k2cps-$(HOST)
+TARGET = ../${HOST}/k2cps
 
 # Relies on GYMLINK_ROOT for bluez and bluez_inc
 ifndef GYMLINK_ROOT
@@ -12,17 +12,15 @@ endif
 # Keep objs separate
 SRC_DIRS := ./ ../gl
 INC_DIRS := ${SRC_DIRS}
-OBJ_DIR := $(CURDIR)/$(HOST)/obj
+OBJ_DIR := ../$(HOST)/obj
 $(shell mkdir -p $(OBJ_DIR))
 DEP_DIR := $(OBJ_DIR)
 $(shell mkdir -p $(DEP_DIR))
 
 BINC_DIR := ${GYMLINK_ROOT}/bluez_inc/binc
 BINC_INC_DIR := ${BINC_DIR}
-BINC_OBJ_DIR := ${CURDIR}/$(HOST)/binc_obj
-$(shell mkdir -p $(BINC_OBJ_DIR))
+BINC_OBJ_DIR := ${OBJ_DIR}
 BINC_DEP_DIR := $(BINC_OBJ_DIR)
-$(shell mkdir -p $(BINC_DEP_DIR))
 
 # Search for files directory order specified above
 vpath %.c ${SRC_DIRS} ${BINC_DIR}
