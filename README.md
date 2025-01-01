@@ -9,7 +9,7 @@ I found other clues scattered around the not-well-documented world of BLE fitnes
 As will become evident, I have little experience using GitHub, and @weliem in particular has been quite kind in correcting errors. The best evidence of usefulness is continuing critiques and corrections; please let me know if anything could be corrected or improved.
 
 # k2cps
-Converts the propietary, pubished BLE broadcast (not connectable) BLE beacon advertising data from a Keiser M3i spin bike (purchased circa 2000) into the (connectable) BLE Cycling Power Service. Testing has been done on Garmin Fenix8 watch with software ranging from 12.19 through the 13.12 beta. It was also tested using kinomap. It is intended that it will also work with other clients that communicate using Bluetooth Low Energy for Cycling Power and Speed.
+Converts the propietary, pubished BLE broadcast (not connectable) BLE beacon advertising data from a Keiser M3i spin bike (purchased circa 2000) into the (connectable) BLE Cycling Power Service (CPS). Testing has been done on Garmin Fenix8 watch with software ranging from 12.19 through the 13.12 beta. It was also tested using kinomap. It is intended that it will also work with other clients that communicate using Bluetooth Low Energy for Cycling Power and Speed.
 
 <p align="center">Garmin Fenix8 v13.12 (client) <--BLE-CPS--> Gymlink (server/client) <-- Keiser M3i bike (beacon)</p>
 
@@ -18,7 +18,7 @@ Converts the propietary, pubished BLE broadcast (not connectable) BLE beacon adv
 
 Note 1: There is a Keiser Bluetooth accessory that receives the broadcast packets and converts them into BLE CPS, Heart Rate Service, and Cycling Speed and Cadence Service data. While accessory supports the BLE specification, but the Fenix8 seems to only recognize one service per MAC ID, resulting in only receiving the accessory heart rate data. The Keiser accessory heart rate data is a rebroadcast of data received by the Keiser beacon from an ANT+ sensor like a Polar H10. The author has heard that the Keiser accessory pairs and works with Peloton.
 
-Note 2: Gymnasticon is another project that provides the same functionality using NODE.js. https://github.com/ptx2/gymnasticon. The Gymnasticon image itself worked for me on a RPI Zero W but only if the RPi was never updated since it relies on specific, and very old, libraries. I don't speak NODE.js so could not cmake it. It does not seem to be maintained.
+Note 2: Gymnasticon is another project that provides the same functionality using NODE.js. https://github.com/ptx2/gymnasticon. The Gymnasticon image itself worked for me on a RPI Zero W but only if the RPi was never updated since it relies on specific, and very old, libraries. I don't speak NODE.js so could not compile/update it. It does not seem to be maintained.
 
 Note 3: A commercial product k2pi is available but was not tested https://k2pi.company.site/
 
@@ -56,6 +56,8 @@ The Fenix8 not enable BatteryService-BatteryLevelCharacteristic <xxx;xxx. notifi
 For simulation purposes, k2cps sends a speed value that is derived from a specified gear ratio in k2cps and tire diameter specified on the Fenix 8. I used a gear ratio of 2:1 and 2096 mm, respectively.
 
 After about 30 seconds of non-use, the Fenix8 will disconnect.
+
+One caveat in testing with the Fenix 8. In early versions I also transmitted a simulated heart rate. If you test using an Activity, even if you delete the Activity, the Active Minutes remain. I chatted with Garmin support about this and there is no way of deleting the Active Minutes associated with a deleted Activity. So you might want to disconnect if not specifically testing if your heart races while sitting at a keyboard.
 
 I sometimes observe dropouts across power, speed, and cadence, indicating a connection error, roughly three times (need ~10s to reconnect) in a 24 minute period. Still debugging.
 
