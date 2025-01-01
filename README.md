@@ -40,7 +40,7 @@ k2cps will scan for the Keiser M3i advertisement, convert the data into CPS form
 
 ## Garmin Fenix 8 as Client
 
-Once k2cps is running, put the watch in sensor pairing mode and when k2cps is detected the watch will show a PWR-[xx:xx:xx:xx:xx] the last 5 values in the MAC address in reverse order. The Fenix8 does not make use of the k2cps (hostname) advertised name (or bluez adapter name), but will display ${HOSTNAME}-CPS as the model in the About section. If you like, after pairing you can rename the sensor on the watch. Other clients may auto-populate with the advertised name.
+Once k2cps is running, put the watch in sensor pairing mode and when k2cps is detected the watch will show a PWR-[xx:xx:xx:xx:xx] the last 5 values in the MAC address in reverse order. The Fenix8 does not make use of the k2cps advertised name (hostname or bluez adapter name), but will display ${HOSTNAME}-CPS as the model in the About section. If you like, after pairing you can rename the sensor on the watch. Other clients may auto-populate with the advertised name.
 
 When starting an activity that uses CPS, the Fenix8 will connect, enable indications on the CPS-CyclingPowerControl characteristic <1818:2a66>, read the DIS <0x0180a:xxxx> values, enable notifications on the Measurement Characteristic (CPS-MC) <1818:2a63>, and begin sending notifications at 500ms intervals. The Fenix8 will show zeros for the cadence and power until the CPS data source, in this case the M3i, starts sending.<br/>
 
@@ -60,4 +60,9 @@ The BLE signal from the M3i is not particularly strong, so place the RPi close b
 
 Upon stopping a workout, the bike beacon has an annoying behavior of sending the last non-zero data for over a minute until it times out; k2cps will detect this and send zeros, so you won't get credit for spinning that extra minute.<br/>
 
+
+# Next up
+The gl library contains other BLE services but with much cruft and only partially working.
+## FTMS indoor bike for M3i (actually more appropriate than CPS, but Garmin didn't recognize)
+## FTMS treadmill to improve cadence and speed measurements, with elevation
 
