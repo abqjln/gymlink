@@ -2,9 +2,9 @@ Gymlink is a C implementation of Bluetooth Low Energy (BLE) communication betwee
 
 Gymlink coding has been intentionally pedantic in style and commenting to provide a learning tool. All the possible compiler warnings are turned on. I knew nothing about BLE or fitness machine communication prior to summer of 2024, and quite likely will forget them soon, so an attempt was made to write everything down. The intent is to help the author remember--and others learn. Bluetooth using C should not be this difficult!
 
-This code was enabled by the excellent C library bluez_inc from @weliem ([bluez_inc](https://github.com/weliem/bluez_inc)), which provides a C library to abstract from the dBus-based ([bluez](https://github.com/bluez/bluez))
+This code was enabled by the excellent C library bluez_inc from @weliem https://github.com/weliem/bluez_inc, which provides a C library to abstract from the dBus-based https://github.com/bluez/bluez
 
-I found other clues scattered around the not-well-documented world of BLE fitness including the Pelomon project [https://github.com/ihaque/pelomon](url).
+I found other clues scattered around the not-well-documented world of BLE fitness including the Pelomon project https://github.com/ihaque/pelomon
 
 As will become evident, I have little experience using GitHub, and @weliem in particular has been quite kind in correcting errors. The best evidence of usefulness is continuing critiques and corrections; please let me know if anything could be corrected or improved.
 
@@ -18,9 +18,11 @@ Converts the propietary, pubished BLE broadcast (not connectable) BLE beacon adv
 
 Note 1: There is a Keiser Bluetooth accessory that receives the broadcast packets and converts them into BLE CPS, Heart Rate Service, and Cycling Speed and Cadence Service data. While accessory supports the BLE specification, but the Fenix8 seems to only recognize one service per MAC ID, resulting in only receiving the accessory heart rate data. The Keiser accessory heart rate data is a rebroadcast of data received by the Keiser beacon from an ANT+ sensor like a Polar H10. The author has heard that the Keiser accessory pairs and works with Peloton.
 
-Note 2: Gymnasticon is another project that provides the same functionality using NODE.js. [https://github.com/ptx2/gymnasticon](url). The Gymnasticon image itself worked for me on a RPI Zero W but only if the RPi was never updated since it relies on specific, and very old, libraries. I don't speak NODE.js so could not cmake it. It does not seem to be maintained.
+Note 2: Gymnasticon is another project that provides the same functionality using NODE.js. https://github.com/ptx2/gymnasticon. The Gymnasticon image itself worked for me on a RPI Zero W but only if the RPi was never updated since it relies on specific, and very old, libraries. I don't speak NODE.js so could not cmake it. It does not seem to be maintained.
 
 Note 3: A commercial product k2pi is available but was not tested https://k2pi.company.site/
+
+Note4: Apparently newer Keiser M3i bikes have BLE server capability built-in (mine was circa 2020).
 
 ## Installation
 1) Start with a headless RPi installation using RPi Imager. (Google how to do this if new to RPis)
@@ -60,13 +62,14 @@ I sometimes observe dropouts across power, speed, and cadence, indicating a conn
 I also observe odd dropouts only in speed, while cadence and power are fine. I suspect a Garmin BLE stack issue. Since speed is simulated with a stationary bike under CPS, not too worried. The Garmin stack changes frequently and without notice.
 
 ## Keiser M3i Notes
-The Keiser M3i bike itself broadcasts a nonconnectable BLE advertisement containing the bike data. The specification is here  [https://dev.keiser.com/mseries/direct/#data-parse-example](url)
+The Keiser M3i bike itself broadcasts a nonconnectable BLE advertisement containing the bike data. The specification is here  https://dev.keiser.com/mseries/direct/#data-parse-example
 
 Gymlink includes a bash simulator `M3i_beacon.sh` derived from 
-[https://github.com/KeiserCorp/Keiser.M3i.BLE-HCI-Simulator/blob/master/M3i_Sim.sh](url)
+https://github.com/KeiserCorp/Keiser.M3i.BLE-HCI-Simulator/blob/master/M3i_Sim.sh
 
 Upon stopping a workout, the bike beacon has an annoying behavior of sending the last non-zero data for over a minute until it times out; k2cps will detect this and send zeros, so you won't get credit for spinning that extra minute.<br/>
 
+`M3i_beacon.sh` is an improved M3i simulator that can be run on a different RPi for testing.
 
 # Next up
 The gl library contains other BLE services but with much cruft and only partially working.
