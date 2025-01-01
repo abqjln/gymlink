@@ -1,6 +1,7 @@
 
 *.d
 *.o
+info/
 pi0dev/
 pi0gym/
 pi3gym/
