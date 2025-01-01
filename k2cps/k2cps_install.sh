@@ -12,7 +12,7 @@ mkdir -p ${GYMLINK_ROOT}
 
 #
 apt update && apt -y full-upgrade
-apt install bc
+apt install -y bc libglib2.0-dev
 
 # Clone gymlink (need to have it be public)
 # git clone https://github.com/abqjln/gymlink
