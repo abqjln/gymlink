@@ -1,6 +1,6 @@
 #!/bin/bash -e
 #
-# sudo -E ${GYMLINK_ROOT}/k2cps/k2cps_install.sh
+# sudo -E ${GYMLINK_ROOT}/gymlink/k2cps/k2cps_install.sh
 
 date
 if [ -z "$GYMLINK_ROOT" ]; then
