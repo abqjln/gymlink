@@ -4,7 +4,7 @@ Gymlink coding has been intentionally pedantic in style and commenting to provid
 
 This code was enabled by the excellent C library bluez_inc from @weliem ([bluez_inc](https://github.com/weliem/bluez_inc)), which provides a C library to abstract from the dBus-based ([bluez](https://github.com/bluez/bluez))
 
-I found other clues scattered around the not-well-documented world of BLE fitness included the Pelomon project [https://github.com/ihaque/pelomon](url).
+I found other clues scattered around the not-well-documented world of BLE fitness including the Pelomon project [https://github.com/ihaque/pelomon](url).
 
 As will become evident, I have little experience using GitHub, and @weliem in particular has been quite kind in correcting errors. The best evidence of usefulness is continuing critiques and corrections; please let me know if anything could be corrected or improved.
 
