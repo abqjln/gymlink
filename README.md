@@ -52,7 +52,7 @@ For simulation purposes, k2cps sends a speed value that is derived from a specif
 
 After about 30 seconds of non-use, the Fenix8 will disconnect.
 
-I sometimes observe dropouts across power, speed, and cadence, indicating a connection error, roughly three times in a 24 minute period. Still debugging.
+I sometimes observe dropouts across power, speed, and cadence, indicating a connection error, roughly three times (need ~10s to reconnect) in a 24 minute period. Still debugging.
 
 I also observe odd dropouts only in speed, while cadence and power are fine. I suspect a Garmin BLE stack issue. Since speed is simulated with a stationary bike under CPS, not too worried. The Garmin stack changes frequently and without notice.
 
