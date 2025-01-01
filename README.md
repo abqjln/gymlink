@@ -35,7 +35,7 @@ So I remember what is going on, I created a script to install the required packa
 7) sudo -E ${GYMLINK_ROOT}/gymlink/k2cps/k2cps_install.sh
 8) cd ${GYMLINK_ROOT}/gymlink/k2cps
 9) make
-10) ./\${GYMLINK_ROOT}/gymlink/${HOSTNAME}/k2cps
+10) \${GYMLINK_ROOT}/gymlink/${HOSTNAME}/k2cps
 
 The BLE signal from the M3i is not particularly strong, so place the RPi close to the M3i head unit (and your watch).
 
