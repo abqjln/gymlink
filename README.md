@@ -57,13 +57,15 @@ The Fenix8 not enable BatteryService-BatteryLevelCharacteristic <xxx;xxx. notifi
 
 For simulation purposes, k2cps sends a speed value that is derived from a specified gear ratio in k2cps and tire diameter specified on the Fenix 8. I used a gear ratio of 2:1 and 2096 mm, respectively.
 
+While connected, the Fenix 8 will read the device battery level every 30 seconds. Likely this is a keep-alive function, since during normal opeation communication is one-way from k2cps to Fenix 8 with no handshaking (BLE notify).
+
 After about 30 seconds of non-use, the Fenix8 will disconnect.
 
 One caveat in testing with the Fenix 8. In early versions I also transmitted a simulated heart rate. If you test using an Activity, even if you delete the Activity, the Active Minutes remain. I chatted with Garmin support about this and there is no way of deleting the Active Minutes associated with a deleted Activity. So you might want to disconnect if not specifically testing if your heart races while sitting at a keyboard.
 
-I sometimes observe dropouts across power, speed, and cadence, indicating a connection error, roughly three times (need ~10s to reconnect) in a 24 minute period. Still debugging.
+I sometimes observe dropouts across power, speed, and cadence, indicating a connection error, roughly three times (~10s to reconnect) in a 24 minute period. Still debugging.
 
-I also observe odd dropouts only in speed, while cadence and power are fine. I suspect a Garmin BLE stack issue. Since speed is simulated with a stationary bike under CPS, not too worried. The Garmin stack changes frequently and without notice.
+I also observe odd dropouts in speed, while cadence and power are fine. I suspect a Garmin BLE stack issue. Since speed is simulated with a stationary bike under CPS, not too worried. The Garmin stack changes frequently and without notice.
 
 ## Keiser M3i Notes
 The Keiser M3i bike itself broadcasts a nonconnectable BLE advertisement containing the bike data. The specification is here  https://dev.keiser.com/mseries/direct/#data-parse-example
@@ -78,10 +80,10 @@ Upon stopping a workout, the bike beacon has an annoying behavior of sending the
 # Next up
 The gl library contains other BLE services but with much cruft and only partially working.
 
-## BLE FTMS treadmill to improve cadence and speed measurements
+## BLE Running Speed and Cadence (RSCS)
 
-## BLE FTMS indoor bike for M3i
-(actually more appropriate than CPS, but couldn't get Garmin to recognize)
+## BLE FTMS Treadmill Data
+## BLE FTMS Indoor Bike Data
+## BLE FTMS Rower Data
 
-## If I had a BLE rowing machine
-
+## Other fitness data collection devices
