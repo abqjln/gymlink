@@ -26,19 +26,20 @@ Note4: Apparently newer Keiser M3i bikes have BLE server capability built-in (mi
 
 ## Installation
 1) Start with a headless RPi installation using RPi Imager. (Google how to do this if new to RPis)
-2) export GYMLINK_ROOT=\<insert directory here\
-3) mkdir -p ${GYMLINK_ROOT}
-4) cd ${GYLMINK_ROOT}
-5) git clone https://github.com/abqjln/gymlink
+2) sudo apt install git
+3) export GYMLINK_ROOT=\<insert directory here\
+4) mkdir -p ${GYMLINK_ROOT}
+5) cd ${GYLMINK_ROOT}
+6) git clone https://github.com/abqjln/gymlink
 
 So I remember what is going on, I created a script to install the required packages. I use sudo. You might want to inspect the script before running it. It will install bluez v5.79 (takes a while), change default bluez configuration, change some kernel bluetooth configuration, and clone bluez_inc.
 
-5) chmod 755 ${GYMLINK_ROOT}/gymlink/k2cps/k2cps_install.sh
-6) chmod 755 ${GYMLINK_ROOT}/gymlink/scripts/*.sh
-7) sudo -E ${GYMLINK_ROOT}/gymlink/k2cps/k2cps_install.sh
-8) cd ${GYMLINK_ROOT}/gymlink/k2cps
-9) make
-10) \${GYMLINK_ROOT}/gymlink/${HOSTNAME}/k2cps
+7) chmod 755 ${GYMLINK_ROOT}/gymlink/k2cps/k2cps_install.sh
+8) chmod 755 ${GYMLINK_ROOT}/gymlink/scripts/*.sh
+9) sudo -E ${GYMLINK_ROOT}/gymlink/k2cps/k2cps_install.sh
+10) cd ${GYMLINK_ROOT}/gymlink/k2cps
+11) make
+12) \${GYMLINK_ROOT}/gymlink/${HOSTNAME}/k2cps
 
 The BLE signal from the M3i is not particularly strong, so place the RPi close to the M3i head unit (and your watch).
 
